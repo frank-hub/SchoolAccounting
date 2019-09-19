@@ -117,7 +117,20 @@
                                 <td>{{$group->group_type}}</td>
                                 <td>{{$group->group_name}}</td>
                                 <td>{{$group->created_at->format('F,m,Y')}}</td>
-                                <td>$320,800</td>
+                                <td>
+                                    <a href="{{route('groups.edit',$group->id)}}" class="btn btn-sm btn-warning" data-toggle="tooltip" title="Edit">
+                                        <i class="fa fa-edit"></i>
+                                    </a>
+                
+                                    <form method="post" action="{{route('groups.destroy',$group->id)}}">
+                                        @csrf
+                                        <input type="hidden" name="_method" value="DELETE" >
+                                        <button type="submit" class="btn btn-small label-warning" data-toggle="tooltip" title="Trash">
+                                            <i class="fa fa-trash"></i> </button>
+                                    </form>
+                
+
+                                </td>
                             </tr>
                         @endforeach
                       

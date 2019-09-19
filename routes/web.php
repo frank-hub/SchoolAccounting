@@ -18,9 +18,11 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('students/view','StudentsController@index');
 
     Route::get('student/group','GroupsController@index');
+    Route::get('accounting/school_fee','FeeController@index');
 });
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::resource('students', 'StudentsController');
 Route::resource('groups', 'GroupsController');
+Route::resource('fee_payment', 'FeeController');

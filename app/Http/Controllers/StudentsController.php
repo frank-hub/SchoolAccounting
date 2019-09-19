@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Students;
 use Illuminate\Http\Request;
 use Session;
+
 class StudentsController extends Controller
 {
     /**
@@ -45,15 +46,15 @@ class StudentsController extends Controller
             'class' => 'required',
             'p_fname' => 'required',
             'p_lname' => 'required',
-            'p_email' => 'required|unique:students',
+            'p_email' => 'unique:students',
             'p_phone' => 'required',
             'id_no' => 'required|unique:students',
         ]);
 
-        $students = new Students;           
+        $students = new Students;
         $students->create($request->all());
 
-        Session::flash('alert-success', 'success');
+        Session::flash('alert-success', 'Student Added Successfully');
 
         // var_dump($request->all());
         return redirect()->back();

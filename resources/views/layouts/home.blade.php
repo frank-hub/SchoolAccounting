@@ -18,7 +18,7 @@
     <link href="{{asset('vendors/nprogress/nprogress.css" rel="stylesheet')}}">
     <!-- iCheck -->
     <link href="{{asset('vendors/iCheck/skins/flat/green.css" rel="stylesheet')}}">
-	
+
     <!-- bootstrap-progressbar -->
     <link href="{{asset('vendors/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css')}}" rel="stylesheet">
     <!-- JQVMap -->
@@ -36,19 +36,17 @@
         <div class="col-md-3 left_col">
           <div class="left_col scroll-view">
             <div class="navbar nav_title" style="border: 0;">
-              <a href="index.html" class="site_title"><i class="fa fa-paw"></i> <span>Gentelella Alela!</span></a>
+              <a href="index.html" class="site_title"><i class="fa fa-paw"></i> <span>Light House Academy</span></a>
             </div>
 
             <div class="clearfix"></div>
 
             <!-- menu profile quick info -->
             <div class="profile clearfix">
-              <div class="profile_pic">
-                <img src="images/img.jpg" alt="..." class="img-circle profile_img">
-              </div>
+
               <div class="profile_info">
                 <span>Welcome,</span>
-                <h2>{{ Auth::user()->username }}</h2>
+                <h2>{{ Auth::user()->name }}</h2>
               </div>
             </div>
             <!-- /menu profile quick info -->
@@ -71,11 +69,13 @@
                   </li>
                   <li><a><i class="fa fa-bar-chart-o"></i>Accounting <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="chartjs.html">School Fees</a></li>
-                      <li><a href="chartjs2.html">Transport Fees</a></li>
+                    <li><a href="{{url('accounting/school_fee')}}">Fee Type</a></li>
+                        <li><a href="chartjs2.html">Invoice</a></li>
+                        <li><a href="chartjs2.html">Payment History</a></li>
+                        <li><a href="chartjs2.html">Global Payment</a></li>
                     </ul>
                   </li>
-                
+
                 </ul>
               </div>
             </div>
@@ -95,13 +95,13 @@
               <a data-toggle="tooltip" data-placement="top" title="Logout" href="{{ route('logout') }}"
                   onclick="event.preventDefault();
                                 document.getElementById('logout-form').submit();">
-                  
+
                 <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
               </a>
               <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                   @csrf
               </form>
-              
+
 
             </div>
             <!-- /menu footer buttons -->
@@ -119,7 +119,7 @@
               <ul class="nav navbar-nav navbar-right">
                 <li class="">
                   <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                    <img src="images/img.jpg" alt="">{{ Auth::user()->username }}
+                    <img src="images/img.jpg" alt="">{{ Auth::user()->name }}
                     <span class=" fa fa-angle-down"></span>
                   </a>
                   <ul class="dropdown-menu dropdown-usermenu pull-right">
@@ -213,7 +213,7 @@
               @endif
           @endforeach
           </div>
-          
+
         <!-- footer content -->
         <footer>
           <div class="pull-right">
@@ -284,6 +284,6 @@
 
     <!-- Custom Theme Scripts -->
     <script src="{{asset('build/js/custom.min.js')}}"></script>
-	
+
   </body>
 </html>
