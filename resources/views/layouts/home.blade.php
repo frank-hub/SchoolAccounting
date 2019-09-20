@@ -69,7 +69,7 @@
                   </li>
                   <li><a><i class="fa fa-bar-chart-o"></i>Accounting <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                    <li><a href="{{url('accounting/school_fee')}}">Fee Type</a></li>
+                    <li><a href="{{url('accounting/fee_type')}}">Fee Type</a></li>
                         <li><a href="chartjs2.html">Invoice</a></li>
                         <li><a href="chartjs2.html">Payment History</a></li>
                         <li><a href="chartjs2.html">Global Payment</a></li>

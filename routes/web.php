@@ -19,6 +19,8 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::get('student/group','GroupsController@index');
     Route::get('accounting/school_fee','FeeController@index');
+    Route::get('accounting/fee_type','FeeTypeController@index');
+    Route::get('accounting/invoice','InvoiceController@index');
 });
 Auth::routes();
 
