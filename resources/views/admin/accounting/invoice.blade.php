@@ -38,30 +38,36 @@
                                 <thead>
                                 <tr>
                                     <th>#</th>
+                                    <th>Student</th>
+                                    <th>Class</th>
+                                    <th>Total</th>
+                                    <th>Paid</th>
                                     <th>Fee Type</th>
-                                    <th>Note</th>
+                                    <th>Status</th>
+                                    <th>Date</th>
                                     <th>Action</th>
                                 </tr>
                                 </thead>
+                                    <tbody>
+                                    @foreach ($invoices as $invoice)
+                                        <tr>
+                                            <td>{{$invoice->id}}</td>
+                                            <td>{{$invoice->student_name}}</td>
+                                            <td>{{$invoice->class}}</td>
+                                            <td>{{$invoice->fee_amount}}</td>
+                                            <td>{{$invoice->paid_amount}}</td>
+                                            <td>{{$invoice->fee_type}}</td>
+                                            <td>{{$invoice->paid_amount}}</td>
+                                            <td>{{$invoice->payment_status}}</td>
+                                            <td>
+                                                <button type="button" class="btn btn-warning" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit">
+                                                    <i class="fa fa-edit"></i>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    @endforeach
 
-
-                                {{--                                <tbody>--}}
-                                {{--                                @foreach ($students as $student)--}}
-                                {{--                                    <tr>--}}
-                                {{--                                        <td>{{$student->reg_name}}</td>--}}
-                                {{--                                        <td>{{$student->fname ." ".$student->lname }}</td>--}}
-                                {{--                                        <td>{{$student->gender}}</td>--}}
-                                {{--                                        <td>{{$student->class}}</td>--}}
-                                {{--                                        <td>{{$student->adm_date}}</td>--}}
-                                {{--                                        <td>--}}
-                                {{--                                            <button type="button" class="btn btn-warning" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit">--}}
-                                {{--                                                <i class="fa fa-edit"></i>--}}
-                                {{--                                            </button>--}}
-                                {{--                                        </td>--}}
-                                {{--                                    </tr>--}}
-                                {{--                                @endforeach--}}
-
-                                {{--                                </tbody>--}}
+                                    </tbody>
                             </table>
                         </div>
                     </div>

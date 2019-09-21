@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Invoice;
 use Illuminate\Http\Request;
+use Session;
 
 class InvoiceController extends Controller
 {
@@ -14,7 +15,8 @@ class InvoiceController extends Controller
      */
     public function index()
     {
-        return view('admin/accounting/invoice');
+        $invoices = Invoice::all();
+        return view('admin/accounting/invoice',compact('invoices'));
     }
 
     /**
@@ -35,7 +37,17 @@ class InvoiceController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+
+        ]);
+
+        $invoice = new Invoice;
+        $invoice->create($request->all());
+
+        Session::flash('alert-success', 'Invoice Created Successfully');
+
+        // var_dump($request->all());
+        return redirect()->back();
     }
 
     /**

@@ -9,47 +9,7 @@
                 @endif
             @endforeach
         </div>
-
-{{--        <div class="col-md-4 col-sm-4 col-xs-12 profile_details">--}}
-{{--            <div class="well profile_view">--}}
-{{--                <div class="col-sm-12">--}}
-{{--                    <h4 class="brief"><i>Digital Strategist</i></h4>--}}
-{{--                    <div class="left col-xs-7">--}}
-{{--                        <h2>Nicole Pearson</h2>--}}
-{{--                        <p><strong>About: </strong> Web Designer / UI. </p>--}}
-{{--                        <ul class="list-unstyled">--}}
-{{--                            <li><i class="fa fa-building"></i> Address: </li>--}}
-{{--                            <li><i class="fa fa-phone"></i> Phone #: </li>--}}
-{{--                        </ul>--}}
-{{--                    </div>--}}
-{{--                    <div class="right col-xs-5 text-center">--}}
-{{--                        <img src="images/user.png" alt="" class="img-circle img-responsive">--}}
-{{--                    </div>--}}
-{{--                </div>--}}
-{{--                <div class="col-xs-12 bottom text-center">--}}
-{{--                    <div class="col-xs-12 col-sm-6 emphasis">--}}
-{{--                        <p class="ratings">--}}
-{{--                            <a>4.0</a>--}}
-{{--                            <a href="#"><span class="fa fa-star"></span></a>--}}
-{{--                            <a href="#"><span class="fa fa-star"></span></a>--}}
-{{--                            <a href="#"><span class="fa fa-star"></span></a>--}}
-{{--                            <a href="#"><span class="fa fa-star"></span></a>--}}
-{{--                            <a href="#"><span class="fa fa-star-o"></span></a>--}}
-{{--                        </p>--}}
-{{--                    </div>--}}
-{{--                    <div class="col-xs-12 col-sm-6 emphasis">--}}
-{{--                        <button type="button" class="btn btn-success btn-xs"> <i class="fa fa-user">--}}
-{{--                            </i> <i class="fa fa-comments-o"></i> </button>--}}
-{{--                        <button type="button" class="btn btn-primary btn-xs">--}}
-{{--                            <i class="fa fa-user"> </i> View Profile--}}
-{{--                        </button>--}}
-{{--                    </div>--}}
-{{--                </div>--}}
-{{--            </div>--}}
-{{--        </div>--}}
-
-{{--        /////////--}}
-        <form method="post" action="">
+        <form method="post" action="{{route('invoices.store')}}">
             @csrf
             <div class="row">
                 <div class="col-md-5 widget">
@@ -68,47 +28,47 @@
                         <div class="x_content">
                             <div class="form-group">
                                 <label class="control-label">Class <span class="text-danger">*</span></label>
-                                    <select class="form-control">
-                                        <option>Select Class</option>
-                                        <option>One</option>
-                                        <option>Two</option>
-                                        <option>Three</option>
+                                    <select class="form-control" name="class" required>
+                                        <option value="">Select Class</option>
+                                        <option value="one">One</option>
+                                        <option value="two">Two</option>
+                                        <option value="Three">Three</option>
                                     </select>
                             </div>
                             <div class="form-group">
-                                <label class="control-label">Student <span class="text-danger">*</span></label>
-                                <select class="form-control">
-                                    <option>Select Student</option>
-                                    <option>John</option>
-                                    <option>Mike</option>
-                                    <option>Andrew</option>
+                                <label class="control-label">Student Name<span class="text-danger">*</span></label>
+                                <select class="form-control" name="student_name" required>
+                                    <option value="">Select Student</option>
+                                    <option value="John Wick">John</option>
+                                    <option value="Mike Richard">Mike</option>
+                                    <option value="Andrew Kibe">Andrew</option>
                                 </select>
                             </div>
                             <div class="control-group">
                                 <label for="date">Date <span class="text-danger">*</span></label>
                                 <div class="controls">
                                     <div class="xdisplay_inputx form-group has-feedback">
-                                        <input type="text" class="form-control has-feedback-left" id="single_cal1" placeholder="First Name" aria-describedby="inputSuccess2Status">
+                                        <input  type="text" class="form-control has-feedback-left" name="date_invoice"  id="single_cal1" aria-describedby="inputSuccess2Status">
                                         <span class="fa fa-calendar-o form-control-feedback left" aria-hidden="true"></span>
                                         <span id="inputSuccess2Status" class="sr-only">(success)</span>
                                     </div>
+                                    </div>
                                 </div>
-                            </div>
                             <div class="form-group">
                                 <label class="control-label">Payment Status <span class="text-danger">*</span></label>
-                                <select class="form-control">
-                                    <option>Select Payment Status</option>
-                                    <option>Not Paid</option>
-                                    <option>Partially Paid</option>
-                                    <option>Fully Paid</option>
+                                <select class="form-control" name="payment_status" required>
+                                    <option value="">Select Payment Status</option>
+                                    <option value="Not Paid">Not Paid</option>
+                                    <option value="Partially Paid">Partially Paid</option>
+                                    <option value="Fully Paid">Fully Paid</option>
                                 </select>
                             </div>
                             <div class="form-group">
                                 <label class="control-label">Payment Method <span class="text-danger">*</span></label>
-                                <select class="form-control">
+                                <select class="form-control" name="payment_method">
                                     <option>Select Payment Method</option>
-                                    <option>Cash</option>
-                                    <option>Mpesa</option>
+                                    <option value="cash">Cash</option>
+                                    <option value="mpesa">Mpesa</option>
                                     <option>Bank Deposit</option>
                                 </select>
                             </div>
@@ -120,7 +80,7 @@
                     <div class="col-md-12 col-sm-12 col-xs-12">
                         <div class="x_panel">
                             <div class="x_title">
-                                <h2>Table design <small>Custom design</small></h2>
+                                <h2>Fee Type</h2>
                                 <ul class="nav navbar-right panel_toolbox">
                                     <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                                     </li>
@@ -134,7 +94,7 @@
                                 <select id="fee_type" class="form-control" name="fee_type" required>
                                     <option value="" selected disabled="true">Select A Fee Type</option>
                                     <option value="123">123</option>
-                                    <option value="456">Guy123</option>
+                                    <option value="Tution Fee">Tution Fee</option>
                                 </select>
                                 <br>
                                 <div class="table-responsive">
@@ -144,17 +104,18 @@
                                             <th class="column-title" >Fee Type</th>
                                             <th class="column-title">Amount</th>
                                             <th class="column-title">Paid Amount</th>
-
                                         </tr>
                                         </thead>
                                         <tbody>
                                         <tr class="even pointer selected">
-                                            <td class=" ">Tution Fee</td>
                                             <td class=" ">
-                                            <input type="number" class="form-control"/>
+                                                <input type="text" class="form-control"  readonly="true" value="Tution Fee"/>
                                             </td>
                                             <td class=" ">
-                                                <input type="number" class="form-control"/>
+                                            <input type="number" name="fee_amount" min="0" class="form-control"/>
+                                            </td>
+                                            <td class=" ">
+                                                <input type="number" name="paid_amount" min="0" class="form-control"/>
                                             </td>
                                         </tr>
                                         </tbody>

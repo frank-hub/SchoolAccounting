@@ -28,5 +28,6 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 Route::resource('students', 'StudentsController');
 Route::resource('fee_type', 'FeeTypeController');
+Route::resource('invoices', 'InvoiceController');
 Route::resource('groups', 'GroupsController');
 Route::resource('fee_payment', 'FeeController');
