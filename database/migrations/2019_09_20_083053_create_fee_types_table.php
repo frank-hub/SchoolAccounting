@@ -15,6 +15,9 @@ class CreateFeeTypesTable extends Migration
     {
         Schema::create('fee_types', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->string('fee_type')->unique();
+            $table->string('note');
+            $table->string('termly')->nullable();
             $table->timestamps();
         });
     }

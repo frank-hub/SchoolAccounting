@@ -21,10 +21,12 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('accounting/school_fee','FeeController@index');
     Route::get('accounting/fee_type','FeeTypeController@index');
     Route::get('accounting/invoice','InvoiceController@index');
+    Route::get('accounting/invoice/add','InvoiceController@create');
 });
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::resource('students', 'StudentsController');
+Route::resource('fee_type', 'FeeTypeController');
 Route::resource('groups', 'GroupsController');
 Route::resource('fee_payment', 'FeeController');

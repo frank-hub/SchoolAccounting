@@ -14,7 +14,8 @@ class FeeTypeController extends Controller
      */
     public function index()
     {
-        return view('admin/accounting/fee_type');
+        $feeTypes = FeeType::all();
+        return view('admin/accounting/fee_type',compact('feeTypes'));
     }
 
     /**
@@ -35,7 +36,16 @@ class FeeTypeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+           'fee_type' => 'required|unique:fee_types',
+            'note' => 'required',
+        ]);
+        $fee_type = new FeeType;
+        $fee_type->fee_type = $request->fee_type;
+        $fee_type->note = $request->note;
+        $fee_type->termly = $request->termly;
+        $fee_type->save();
+        return redirect()->back();
     }
 
     /**

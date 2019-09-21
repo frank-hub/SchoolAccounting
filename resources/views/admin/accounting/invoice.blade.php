@@ -5,53 +5,15 @@
 
         <!-- modals -->
         <!-- Large modal -->
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-lg">
-            <span class="fa fa-plus-circle"> Add Fee Type</span>
-        </button>
+        <a href="{{url('accounting/invoice/add')}}"  class="btn btn-primary">
+            <span class="fa fa-plus-circle"> Create Invoice</span>
+        </a>
         <div class="flash-message">
             @foreach (['danger', 'warning', 'success', 'info'] as $msg)
                 @if(Session::has('alert-' . $msg))
                     <p class="alert alert-{{ $msg }}">{{ Session::get('alert-' . $msg) }}</p>
                 @endif
             @endforeach
-        </div>
-        <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-hidden="true">
-            <div class="modal-dialog modal-lg">
-                <div class="modal-content">
-
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span>
-                        </button>
-                        <h4 class="modal-title" id="myModalLabel">Add Fee Type</h4>
-                    </div>
-                    <div class="modal-body">
-                        <form class="form-horizontal form-label-left input_mask" method="POST" action="{{route('students.store')}}">
-                            @csrf
-                            <h4>Fee Type</h4>
-                            <div class="row">
-                                <div class="col-md-6 form-group has-feedback">
-                                    <label for="fee_type">Fee Type</label>
-                                    <input type="text" name="fee_type" class="form-control has-feedback-left" id="inputSuccess2" placeholder="Fee Type">
-                                    <span class="fa fa-money form-control-feedback left" aria-hidden="true"></span>
-                                </div>
-                                <div class="col-md-6">
-                                    <label for="termly">Termly</label>
-                                    <input type="checkbox" id="termly" class="form-control " name="termly">
-                                </div>
-
-                            </div>
-                            <div class="col-md-6  form-group has-feedback">
-                                <label for="note">Note/ Description</label>
-                                <textarea name="note" id="" class="form-control" cols="20" rows="10" ></textarea>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                <button type="submit" class="btn btn-primary">Submit</button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
         </div>
 
         <div class="">

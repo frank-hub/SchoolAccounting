@@ -25,7 +25,7 @@
                         <h4 class="modal-title" id="myModalLabel">Add Fee Type</h4>
                     </div>
                     <div class="modal-body">
-                        <form class="form-horizontal form-label-left input_mask" method="POST" action="{{route('students.store')}}">
+                        <form class="form-horizontal form-label-left input_mask" method="POST" action="{{route('fee_type.store')}}">
                             @csrf
                             <h4>Fee Type</h4>
                             <div class="row">
@@ -36,7 +36,7 @@
                                 </div>
                                 <div class="col-md-6">
                                     <label for="termly">Termly</label>
-                                    <input type="checkbox" id="termly" class="form-control " name="termly">
+                                    <input type="checkbox" id="termly" value="termly" class="form-control " name="termly">
                                 </div>
 
                             </div>
@@ -77,29 +77,29 @@
                                 <tr>
                                     <th>#</th>
                                     <th>Fee Type</th>
+                                    <th>Termly</th>
                                     <th>Note</th>
                                     <th>Action</th>
                                 </tr>
                                 </thead>
 
 
-{{--                                <tbody>--}}
-{{--                                @foreach ($students as $student)--}}
-{{--                                    <tr>--}}
-{{--                                        <td>{{$student->reg_name}}</td>--}}
-{{--                                        <td>{{$student->fname ." ".$student->lname }}</td>--}}
-{{--                                        <td>{{$student->gender}}</td>--}}
-{{--                                        <td>{{$student->class}}</td>--}}
-{{--                                        <td>{{$student->adm_date}}</td>--}}
-{{--                                        <td>--}}
-{{--                                            <button type="button" class="btn btn-warning" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit">--}}
-{{--                                                <i class="fa fa-edit"></i>--}}
-{{--                                            </button>--}}
-{{--                                        </td>--}}
-{{--                                    </tr>--}}
-{{--                                @endforeach--}}
+                                <tbody>
+                                @foreach ($feeTypes as $feeType)
+                                    <tr>
+                                        <td>#{{$feeType->id}}</td>
+                                        <td>{{$feeType->fee_type }}</td>
+                                        <td>{{$feeType->termly}}</td>
+                                        <td>{{$feeType->note}}</td>
+                                        <td>
+                                            <button type="button" class="btn btn-sm btn-warning" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit">
+                                                <i class="fa fa-edit"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                @endforeach
 
-{{--                                </tbody>--}}
+                                </tbody>
                             </table>
                         </div>
                     </div>
