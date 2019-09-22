@@ -58,10 +58,25 @@
                                 <div class="col-md-6 col-sm-6 col-xs-12 form-group has-feedback">
 
                                     <select id="heard" class="form-control" name="class" required>
-                                        <option value="" selected>Stream/Class</option>
-                                        <option value="press">Press</option>
-                                        <option value="net">Internet</option>
-                                        <option value="mouth">Word of mouth</option>
+
+                                        <optgroup label="Pre-Unit/Nursery">
+                                            <option value="Baby">Baby Class</option>
+                                            <option value="Middle">Middle Class</option>
+                                            <option value="Top">Top Class</option>
+                                        </optgroup>
+                                        <optgroup label="Lower Primary">
+                                            <option value="One">One</option>
+                                            <option value="Two">Two</option>
+                                            <option value="Three">Three</option>
+                                        </optgroup>
+                                        <optgroup label="Upper Primary">
+                                            <option value="Four">Four</option>
+                                            <option value="Five">Five</option>
+                                            <option value="Six">Six</option>
+                                            <option value="Seven">Seven</option>
+                                            <option value="Eight">Eight</option>
+                                        </optgroup>
+
                                     </select>
                                 </div>
 

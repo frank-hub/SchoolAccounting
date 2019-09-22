@@ -30,9 +30,23 @@
                                 <label class="control-label">Class <span class="text-danger">*</span></label>
                                     <select class="form-control" name="class" required>
                                         <option value="">Select Class</option>
-                                        <option value="one">One</option>
-                                        <option value="two">Two</option>
-                                        <option value="Three">Three</option>
+                                        <optgroup label="Pre-Unit/Nursery">
+                                            <option value="Baby">Baby Class</option>
+                                            <option value="Middle">Middle Class</option>
+                                            <option value="Top">Top Class</option>
+                                        </optgroup>
+                                        <optgroup label="Lower Primary">
+                                            <option value="One">One</option>
+                                            <option value="Two">Two</option>
+                                            <option value="Three">Three</option>
+                                        </optgroup>
+                                        <optgroup label="Upper Primary">
+                                            <option value="Four">Four</option>
+                                            <option value="Five">Five</option>
+                                            <option value="Six">Six</option>
+                                            <option value="Seven">Seven</option>
+                                            <option value="Eight">Eight</option>
+                                        </optgroup>
                                     </select>
                             </div>
                             <div class="form-group">
