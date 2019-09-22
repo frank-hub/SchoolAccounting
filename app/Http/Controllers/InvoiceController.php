@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\FeeType;
 use App\Invoice;
+use App\Students;
 use Illuminate\Http\Request;
 use Session;
 
@@ -16,6 +18,7 @@ class InvoiceController extends Controller
     public function index()
     {
         $invoices = Invoice::all();
+
         return view('admin/accounting/invoice',compact('invoices'));
     }
 
@@ -26,7 +29,9 @@ class InvoiceController extends Controller
      */
     public function create()
     {
-        return view('admin/accounting/add_invoice');
+        $students = Students::all();
+        $feeTypes = FeeType::all();
+        return view('admin/accounting/add_invoice',compact('students','feeTypes'));
     }
 
     /**
@@ -42,11 +47,20 @@ class InvoiceController extends Controller
         ]);
 
         $invoice = new Invoice;
-        $invoice->create($request->all());
 
+        $invoice->class = $request->class;
+        $invoice->student_name = $request->student_name;
+        $invoice->date_invoice = $request->date_invoice;
+        $invoice->payment_status = $request->payment_status;
+        $invoice->payment_method = $request->payment_method;
+        $invoice->fee_type = $request->fee_type;
+        $invoice->fee_amount = $request->fee_amount;
+        $invoice->paid_amount = $request->paid_amount;
+        $invoice->balance = ((int)$request->fee_amount - (int)$request->paid_amount);
+        $invoice->save();
         Session::flash('alert-success', 'Invoice Created Successfully');
 
-        // var_dump($request->all());
+//         var_dump($request->all());
         return redirect()->back();
     }
 
@@ -56,9 +70,10 @@ class InvoiceController extends Controller
      * @param  \App\Invoice  $invoice
      * @return \Illuminate\Http\Response
      */
-    public function show(Invoice $invoice)
+    public function show($id)
     {
-        //
+        $invoices = Invoice::find($id);
+        return view('admin.accounting.payment',compact('invoices'));
     }
 
     /**
@@ -67,9 +82,10 @@ class InvoiceController extends Controller
      * @param  \App\Invoice  $invoice
      * @return \Illuminate\Http\Response
      */
-    public function edit(Invoice $invoice)
+    public function edit( $id)
     {
-        //
+        $invoice = Invoice::find($id);
+        return view('admin.accounting.edit_invoice',compact('invoice'));
     }
 
     /**
@@ -79,9 +95,23 @@ class InvoiceController extends Controller
      * @param  \App\Invoice  $invoice
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Invoice $invoice)
+    public function update(Request $request,$id)
     {
-        //
+        $invoice = Invoice::find($id);
+        $invoice->class = $request->class;
+        $invoice->student_name = $request->student_name;
+        $invoice->date_invoice = $request->date_invoice;
+        $invoice->payment_status = $request->payment_status;
+        $invoice->payment_method = $request->payment_method;
+        $invoice->fee_type = $request->fee_type;
+        $invoice->fee_amount = $request->fee_amount;
+        $invoice->paid_amount = $request->paid_amount;
+        $invoice->balance = ((int)$request->fee_amount - (int)$request->paid_amount);
+        $invoice->save();
+
+        Session::flash('alert-info', 'Invoice Updated Successfully');
+        $invoices = Invoice::all();
+        return view('admin/accounting/invoice',compact('invoices'));
     }
 
     /**
@@ -90,8 +120,31 @@ class InvoiceController extends Controller
      * @param  \App\Invoice  $invoice
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Invoice $invoice)
+    public function destroy($id)
     {
-        //
+        $invoice = Invoice::find($id);
+        $invoice->delete();
+        Session::flash('alert-danger', 'Invoice Deleted Successfully');
+        return redirect()->back();
+    }
+
+    public function payment(Request $request, $id){
+
+        $invoice = Invoice::find($id);
+//        $invoice->class = $request->class;
+//        $invoice->student_name = $request->student_name;
+//        $invoice->date_invoice = $request->date_invoice;
+//        $invoice->payment_status = $request->payment_status;
+//        $invoice->payment_method = $request->payment_method;
+//        $invoice->fee_type = $request->fee_type;
+//        $invoice->fee_amount = $request->fee_amount;
+//        $invoice->paid_amount = $request->paid_amount;
+//        var_dump($request);
+        $invoice->balance = ((int)$request->balance - (int)$request->paid_amount);
+        $invoice->save();
+
+        Session::flash('alert-info', 'Invoice Updated Successfully');
+        $invoices = Invoice::all();
+        return view('admin/accounting/invoice',compact('invoices'));
     }
 }

@@ -15,14 +15,15 @@ class CreateInvoicesTable extends Migration
     {
         Schema::create('invoices', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('class')->unique();
+            $table->string('class');
             $table->string('student_name');
             $table->string('date_invoice');
             $table->string('payment_status');
             $table->string('payment_method');
             $table->string('fee_type');
-            $table->decimal('fee_amount');
-            $table->decimal('paid_amount')->nullable();
+            $table->integer('balance')->default('0');
+            $table->integer('fee_amount');
+            $table->integer('paid_amount')->nullable();
             $table->timestamps();
         });
     }

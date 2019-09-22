@@ -26,6 +26,9 @@ Route::group(['middleware' => ['auth']], function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::post('/edit/{id}','InvoiceController@update');
+Route::post('/pay/{id}','InvoiceController@payment');
+
 Route::resource('students', 'StudentsController');
 Route::resource('fee_type', 'FeeTypeController');
 Route::resource('invoices', 'InvoiceController');

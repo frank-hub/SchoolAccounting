@@ -9,8 +9,9 @@
                 @endif
             @endforeach
         </div>
-        <form method="post" action="{{route('invoices.store')}}">
+        <form method="post" action="{{url('pay',$invoices['id'])}}">
             @csrf
+            {{--            @method('PUT')--}}
             <div class="row">
                 <div class="col-md-5 widget">
                     <div class="x_panel " style="">
@@ -28,51 +29,44 @@
                         <div class="x_content">
                             <div class="form-group">
                                 <label class="control-label">Class <span class="text-danger">*</span></label>
-                                    <select class="form-control" name="class" required>
-                                        <option value="">Select Class</option>
-                                        <option value="one">One</option>
-                                        <option value="two">Two</option>
-                                        <option value="Three">Three</option>
-                                    </select>
+                                <input  name="class" min="0" value="{{$invoices->class}}"  readonly class="form-control"/>
                             </div>
                             <div class="form-group">
                                 <label class="control-label">Student Name<span class="text-danger">*</span></label>
-                                <select class="form-control" name="student_name" required>
-                                    <option value="">Select Student</option>
-                                    @foreach($students as $student)
-                                        <option value="{{$student->fname ." ".$student->lname }}">{{$student->fname ." ".$student->lname }}</option>
-                                    @endforeach
-                                </select>
+                                <input type="text" name="student_name" min="0" value="{{$invoices->student_name}}"  readonly class="form-control"/>
+
                             </div>
                             <div class="control-group">
                                 <label for="date">Date <span class="text-danger">*</span></label>
                                 <div class="controls">
                                     <div class="xdisplay_inputx form-group has-feedback">
-                                        <input  type="text" class="form-control has-feedback-left" name="date_invoice"  id="single_cal1" aria-describedby="inputSuccess2Status">
+                                        <input readonly  type="text" class="form-control has-feedback-left" name="date_invoice" value="{{$invoices->date_invoice}}"  id="single_cal1" aria-describedby="inputSuccess2Status">
                                         <span class="fa fa-calendar-o form-control-feedback left" aria-hidden="true"></span>
                                         <span id="inputSuccess2Status" class="sr-only">(success)</span>
                                     </div>
-                                    </div>
                                 </div>
+                            </div>
                             <div class="form-group">
                                 <label class="control-label">Payment Status <span class="text-danger">*</span></label>
                                 <select class="form-control" name="payment_status" required>
-                                    <option value="">Select Payment Status</option>
+                                    <option value="{{$invoices->payment_status}}">{{$invoices->payment_status}}</option>
                                     <option value="Not Paid">Not Paid</option>
                                     <option value="Partially Paid">Partially Paid</option>
                                     <option value="Fully Paid">Fully Paid</option>
                                 </select>
+
                             </div>
                             <div class="form-group">
                                 <label class="control-label">Payment Method <span class="text-danger">*</span></label>
-                                <select class="form-control" name="payment_method">
-                                    <option>Select Payment Method</option>
+                                <select class="form-control" name="payment_method" required>
+                                    <option value="">Select Payment Method</option>
                                     <option value="cash">Cash</option>
                                     <option value="mpesa">Mpesa</option>
                                     <option>Bank Deposit</option>
                                 </select>
+{{--                                <input type="number" name="payment_method" min="0" value="{{$invoices->payment_method}}"  readonly class="form-control"/>--}}
                             </div>
-                            <button type="submit" class="btn btn-block btn-success">Add Invoice</button>
+                            <button type="submit" class="btn btn-block btn-success">Update Invoice</button>
                         </div>
                     </div>
                 </div>
@@ -91,32 +85,29 @@
                             </div>
                             <div class="x_content">
                                 <p>Fee Type</p>
-                                <select id="fee_type" class="form-control" name="fee_type" required>
-                                    <option value="" selected disabled="true">Select A Fee Type</option>
-                                    @foreach($feeTypes as $feeType)
-                                        <option value="{{$feeType->fee_type }}">{{$feeType->fee_type }}</option>
-                                    @endforeach
-                                </select>
+                                <input type="text" name="payment_status" min="0" value="{{$invoices->fee_type}}"  readonly class="form-control"/>
+
                                 <br>
                                 <div class="table-responsive">
                                     <table class="table table-striped jambo_table bulk_action">
                                         <thead>
                                         <tr class="headings selected">
-                                            <th class="column-title" >Fee Type</th>
-                                            <th class="column-title">Amount</th>
+                                            <th class="column-title" >Amount</th>
+                                            <th class="column-title">Balance</th>
                                             <th class="column-title">Paid Amount</th>
                                         </tr>
                                         </thead>
                                         <tbody>
                                         <tr class="even pointer selected">
+
                                             <td class=" ">
-                                                <input type="text" class="form-control"  readonly="true" value="Tution Fee"/>
+                                                <input type="number" name="fee_amount" min="0" value="{{$invoices->fee_amount}}"  readonly class="form-control"/>
                                             </td>
                                             <td class=" ">
-                                            <input type="number" name="fee_amount" min="0" class="form-control"/>
+                                                <input type="number" name="balance" min="0" readonly="true"  value="{{$invoices->balance}}" required class="form-control"/>
                                             </td>
                                             <td class=" ">
-                                                <input type="number" name="paid_amount" min="0" class="form-control"/>
+                                                <input type="text" class="form-control" name="paid_amount"   value=""/>
                                             </td>
                                         </tr>
                                         </tbody>
@@ -131,10 +122,4 @@
         </form>
 
     </div>
-    <script src="{{asset('js/app.js')}}"></script>
-    <script>
-
-    </script>
-    <!-- /page content -->
 @endsection
-

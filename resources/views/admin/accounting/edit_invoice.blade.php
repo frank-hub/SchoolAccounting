@@ -9,8 +9,9 @@
                 @endif
             @endforeach
         </div>
-        <form method="post" action="{{route('invoices.store')}}">
+        <form method="post" action="{{url('edit',$invoice['id'])}}">
             @csrf
+{{--            @method('PUT')--}}
             <div class="row">
                 <div class="col-md-5 widget">
                     <div class="x_panel " style="">
@@ -28,36 +29,37 @@
                         <div class="x_content">
                             <div class="form-group">
                                 <label class="control-label">Class <span class="text-danger">*</span></label>
-                                    <select class="form-control" name="class" required>
-                                        <option value="">Select Class</option>
-                                        <option value="one">One</option>
-                                        <option value="two">Two</option>
-                                        <option value="Three">Three</option>
-                                    </select>
+                                <select class="form-control" name="class" required>
+                                    <option value="">Select Class</option>
+                                    <option value="{{$invoice->class}}" selected>{{$invoice->class}}</option>
+                                    <option value="one">One</option>
+                                    <option value="two">Two</option>
+                                    <option value="Three">Three</option>
+                                </select>
                             </div>
                             <div class="form-group">
                                 <label class="control-label">Student Name<span class="text-danger">*</span></label>
                                 <select class="form-control" name="student_name" required>
-                                    <option value="">Select Student</option>
-                                    @foreach($students as $student)
-                                        <option value="{{$student->fname ." ".$student->lname }}">{{$student->fname ." ".$student->lname }}</option>
-                                    @endforeach
+                                    <option value="{{$invoice->student_name}}" selected>{{$invoice->student_name}}</option>
+                                    <option value="John Wick">John</option>
+                                    <option value="Mike Richard">Mike</option>
+                                    <option value="Andrew Kibe">Andrew</option>
                                 </select>
                             </div>
                             <div class="control-group">
                                 <label for="date">Date <span class="text-danger">*</span></label>
                                 <div class="controls">
                                     <div class="xdisplay_inputx form-group has-feedback">
-                                        <input  type="text" class="form-control has-feedback-left" name="date_invoice"  id="single_cal1" aria-describedby="inputSuccess2Status">
+                                        <input  type="text" class="form-control has-feedback-left" name="date_invoice" value="{{$invoice->date_invoice}}"  id="single_cal1" aria-describedby="inputSuccess2Status">
                                         <span class="fa fa-calendar-o form-control-feedback left" aria-hidden="true"></span>
                                         <span id="inputSuccess2Status" class="sr-only">(success)</span>
                                     </div>
-                                    </div>
                                 </div>
+                            </div>
                             <div class="form-group">
                                 <label class="control-label">Payment Status <span class="text-danger">*</span></label>
                                 <select class="form-control" name="payment_status" required>
-                                    <option value="">Select Payment Status</option>
+                                    <option value="{{$invoice->payment_status}}" selected>{{$invoice->payment_status}}</option>
                                     <option value="Not Paid">Not Paid</option>
                                     <option value="Partially Paid">Partially Paid</option>
                                     <option value="Fully Paid">Fully Paid</option>
@@ -67,6 +69,7 @@
                                 <label class="control-label">Payment Method <span class="text-danger">*</span></label>
                                 <select class="form-control" name="payment_method">
                                     <option>Select Payment Method</option>
+                                    <option value="{{$invoice->payment_method}}" selected>{{$invoice->payment_method}}</option>
                                     <option value="cash">Cash</option>
                                     <option value="mpesa">Mpesa</option>
                                     <option>Bank Deposit</option>
@@ -92,10 +95,10 @@
                             <div class="x_content">
                                 <p>Fee Type</p>
                                 <select id="fee_type" class="form-control" name="fee_type" required>
-                                    <option value="" selected disabled="true">Select A Fee Type</option>
-                                    @foreach($feeTypes as $feeType)
-                                        <option value="{{$feeType->fee_type }}">{{$feeType->fee_type }}</option>
-                                    @endforeach
+                                    <option value="">Select A Fee Type</option>
+                                    <option value="{{$invoice->fee_type}}" selected >{{$invoice->fee_type}}</option>
+                                    <option value="123">123</option>
+                                    <option value="Tution Fee">Tution Fee</option>
                                 </select>
                                 <br>
                                 <div class="table-responsive">
@@ -110,13 +113,13 @@
                                         <tbody>
                                         <tr class="even pointer selected">
                                             <td class=" ">
-                                                <input type="text" class="form-control"  readonly="true" value="Tution Fee"/>
+                                                <input type="text" class="form-control"  readonly="true" value=""/>
                                             </td>
                                             <td class=" ">
-                                            <input type="number" name="fee_amount" min="0" class="form-control"/>
+                                                <input type="number" name="fee_amount" min="0" value="{{$invoice->fee_amount}}"  required class="form-control"/>
                                             </td>
                                             <td class=" ">
-                                                <input type="number" name="paid_amount" min="0" class="form-control"/>
+                                                <input type="number" name="paid_amount" min="0"  value="{{$invoice->paid_amount}}" required class="form-control"/>
                                             </td>
                                         </tr>
                                         </tbody>
@@ -131,10 +134,4 @@
         </form>
 
     </div>
-    <script src="{{asset('js/app.js')}}"></script>
-    <script>
-
-    </script>
-    <!-- /page content -->
 @endsection
-

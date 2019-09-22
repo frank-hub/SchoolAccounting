@@ -43,6 +43,7 @@
                                     <th>Total</th>
                                     <th>Paid</th>
                                     <th>Fee Type</th>
+                                    <th>Balance</th>
                                     <th>Status</th>
                                     <th>Date</th>
                                     <th>Action</th>
@@ -57,11 +58,40 @@
                                             <td>{{$invoice->fee_amount}}</td>
                                             <td>{{$invoice->paid_amount}}</td>
                                             <td>{{$invoice->fee_type}}</td>
-                                            <td>{{$invoice->paid_amount}}</td>
-                                            <td>{{$invoice->payment_status}}</td>
+                                            <td>{{$invoice->balance}}</td>
                                             <td>
-                                                <button type="button" class="btn btn-warning" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit">
-                                                    <i class="fa fa-edit"></i>
+                                                @if($invoice->payment_status == "Not Paid")
+                                                    <button class="btn btn-xs btn-danger">Not Paid</button>
+                                                @elseif($invoice->payment_status == "Partially Paid")
+                                                    <button class="btn btn-xs btn-warning">Partially Paid</button>
+                                                @elseif($invoice->payment_status == "Fully Paid" && $invoice->balance == "0")
+                                                    <button class="btn btn-xs btn-info">Cleared</button>
+                                                @else
+                                                    <button class="btn btn-xs btn-warning">Partially Paid</button>
+                                                @endif
+
+                                            </td>
+                                            <td>{{$invoice->date_invoice}}</td>
+                                            <td>
+                                                @if($invoice->payment_status == "Not Paid")
+                                                    <a href="{{route('invoices.edit', $invoice['id'])}}" type="button" class="btn btn-xs btn-warning" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit">
+                                                        <i class="fa fa-edit"></i>
+                                                    </a>
+                                                @endif
+                                                @if($invoice->balance > 0)
+                                                    <a href="{{route('invoices.show', $invoice['id'])}}" type="button" class="btn btn-xs btn-info" data-toggle="tooltip" data-placement="top" title="" data-original-title="Make Payment">
+                                                        <i class="fa fa-money"></i>
+                                                    </a>
+                                                @endif
+                                                <a href="{{route('invoices.edit', $invoice['id'])}}" type="button" class="btn btn-xs btn-warning" data-toggle="tooltip" data-placement="top" title="" data-original-title="View Invoice">
+                                                    <i class="fa fa-clipboard"></i>
+                                                </a>
+                                                <button hidden>
+                                                    <form method="post" action="{{route('invoices.destroy',$invoice['id'])}}">
+                                                        @csrf
+                                                        <input type="hidden" name="_method" value="DELETE">
+                                                        <button type="submit" class="btn btn-xs btn-danger" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete Record"><i class="fa fa-trash"></i></button>
+                                                    </form>
                                                 </button>
                                             </td>
                                         </tr>
