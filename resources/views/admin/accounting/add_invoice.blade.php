@@ -66,8 +66,8 @@
                                         <span class="fa fa-calendar-o form-control-feedback left" aria-hidden="true"></span>
                                         <span id="inputSuccess2Status" class="sr-only">(success)</span>
                                     </div>
-                                    </div>
                                 </div>
+                            </div>
                             <div class="form-group">
                                 <label class="control-label">Payment Status <span class="text-danger">*</span></label>
                                 <select class="form-control" name="payment_status" required>

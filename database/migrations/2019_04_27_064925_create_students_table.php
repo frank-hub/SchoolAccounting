@@ -22,11 +22,6 @@ class CreateStudentsTable extends Migration
             $table->string('reg_name');
             $table->string('class');
             $table->string('gender');
-            $table->string('p_fname');
-            $table->string('p_lname');
-            $table->string('p_email');
-            $table->string('p_phone');
-            $table->string('id_no');
             $table->timestamps();
         });
     }

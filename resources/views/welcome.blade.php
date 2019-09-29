@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Gentelella Alela! | </title>
+    <title>LIGHT HOUSE GRACE ACADEMY </title>
 
     <!-- Bootstrap -->
     <link href="vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -30,6 +30,7 @@
       <div class="login_wrapper">
         <div class="animate form login_form">
           <section class="login_content">
+              <img src="{{asset('images/logo.jpeg')}}" class="img-responsive" style="height:216px;margin-left: 70px;">
             <form method="POST" action="{{ route('login') }}">
                 @csrf
               <h1>Login Form</h1>
@@ -51,21 +52,20 @@
               </div>
               <div>
                 <button class="btn btn-default submit" href="index.html">Log in</button>
-                <a class="reset_pass" href="#">Lost your password?</a>
+{{--                <a class="reset_pass" href="#">Lost your password?</a>--}}
               </div>
 
               <div class="clearfix"></div>
 
               <div class="separator">
-                <p class="change_link">New to site?
-                  <a href="#signup" class="to_register"> Create Account </a>
-                </p>
+{{--                <p class="change_link">New to site?--}}
+{{--                  <a href="#signup" class="to_register"> Create Account </a>--}}
+{{--                </p>--}}
 
                 <div class="clearfix"></div>
                 <br />
 
                 <div>
-                    <h1><i class="fa fa-paw"></i> Light House Grace Academy</h1>
                     <p>©2019 All Rights Reserved. Privacy and Terms <a href="nextechdevelopers.com">Light House Grace Academy</a></p>
                 </div>
               </div>
@@ -141,7 +141,7 @@
 
                 <div>
                   <h1><i class="fa fa-paw"></i> Light House Grace Academy</h1>
-                  <p>©2019 All Rights Reserved. Privacy and Terms <a href="nextechdevelopers.com">Light House Grace Academy</a></p>
+                  <p>©<?php echo date('Y') ?>All Rights Reserved. Privacy and Terms <a href="nextechdevelopers.com">Light House Grace Academy</a></p>
                 </div>
               </div>
             </form>

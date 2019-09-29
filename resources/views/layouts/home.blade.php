@@ -67,6 +67,16 @@
 {{--                      <li><a href="{{url('student/group')}}">Student Groups</a></li>--}}
                     </ul>
                   </li>
+                    <li><a><i class="fa fa-shield"></i> Parents <span class="fa fa-chevron-down"></span></a>
+                        <ul class="nav child_menu">
+                            <li><a href="{{url('parent/view')}}">Parents</a></li>
+
+                        </ul>
+                    </li>
+
+
+
+                    </li>
                   <li><a><i class="fa fa-bar-chart-o"></i>Accounting <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                     <li><a href="{{url('accounting/fee_type')}}">Fee Type</a></li>
@@ -147,13 +157,7 @@
         <!-- /top navigation -->
 
        @yield('main')
-       <div class="flash-message">
-          @foreach (['danger', 'warning', 'success', 'info'] as $msg)
-              @if(Session::has('alert-' . $msg))
-              <p class="alert alert-{{ $msg }}">{{ Session::get('alert-' . $msg) }}</p>
-              @endif
-          @endforeach
-          </div>
+
 
         <!-- footer content -->
         <footer>

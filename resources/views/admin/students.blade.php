@@ -41,11 +41,27 @@
                                 <div class="col-md-6 col-sm-6 col-xs-12 form-group has-feedback">
                                     <div class="row">
                                         <div class="col-md-6">
-                                            <label>Admission Date</label>
+{{--                                                <input type="date" id="adm_date" class="form-control " name="adm_date" id="inputSuccess3" placeholder="Registration No.">--}}
+{{--                                                <span class="fa fa-date form-control-feedback right" aria-hidden="true"></span>--}}
+                                            <div class="control-group">
+                                                <label for="date">Admission Date</label>
+                                                <div class="controls">
+                                                    <div class="xdisplay_inputx form-group has-feedback">
+                                                        <input  type="text" class="form-control has-feedback-left" name="adm_date"  id="single_cal1" aria-describedby="inputSuccess2Status">
+                                                        <span class="fa fa-calendar-o form-control-feedback left" aria-hidden="true"></span>
+                                                        <span id="inputSuccess2Status" class="sr-only">(success)</span>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                         <div class="col-md-6">
-                                                <input type="date" id="adm_date" class="form-control " name="adm_date" id="inputSuccess3" placeholder="Registration No.">
-                                                <span class="fa fa-date form-control-feedback right" aria-hidden="true"></span>
+                                            <label>Gender</label>
+                                            <select id="heard" class="form-control" name="gender" required>
+                                                <option value="" selected>Gender</option>
+                                                <option value="Male">Male</option>
+                                                <option value="Female">Female</option>
+
+                                            </select>
                                         </div>
                                     </div>
                                 </div>
@@ -58,7 +74,7 @@
                                 <div class="col-md-6 col-sm-6 col-xs-12 form-group has-feedback">
 
                                     <select id="heard" class="form-control" name="class" required>
-
+                                        <option value="" selected>Select Class</option>
                                         <optgroup label="Pre-Unit/Nursery">
                                             <option value="Baby">Baby Class</option>
                                             <option value="Middle">Middle Class</option>
@@ -80,19 +96,9 @@
                                     </select>
                                 </div>
 
-                                <div class="col-md-6 col-sm-6 col-xs-12 form-group has-feedback">
-                                    <select id="heard" class="form-control" name="gender" required>
-                                        <option value="" selected>Gender</option>
-                                        <option value="Male">Male</option>
-                                        <option value="Female">Female</option>
 
-                                    </select>
-                                </div>
-
-
-                               ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-                                <h4>Parent Details</h4>
+                                <h4>Guardian(1) Details</h4>
+                            <div class="row">
                                 <div class="col-md-6 col-sm-6 col-xs-12 form-group has-feedback">
                                     <input type="text" name="p_fname" class="form-control has-feedback-left" id="inputSuccess2" placeholder="First Name">
                                     <span class="fa fa-user form-control-feedback left" aria-hidden="true"></span>
@@ -116,8 +122,41 @@
                                     <input type="number" name="id_no" class="form-control has-feedback-left" id="inputSuccess4" placeholder="ID Number/Passport">
                                     <span class="fa fa-envelope form-control-feedback left" aria-hidden="true"></span>
                                 </div>
+                                <div class="col-md-6 col-sm-6 col-xs-12 form-group has-feedback">
+                                    <input type="text" name="p_occupation" class="form-control has-feedback-left" id="inputSuccess4" placeholder="Occupation">
+                                    <span class="fa fa-envelope form-control-feedback left" aria-hidden="true"></span>
+                                </div>
+                            </div>
+{{--                            Divider--}}
+                            <br>
+                                <h4>Guardian(2) Details</h4>
+                                <div class="col-md-6 col-sm-6 col-xs-12 form-group has-feedback">
+                                    <input type="text" name="p1_fname" class="form-control has-feedback-left" id="inputSuccess2" placeholder="First Name">
+                                    <span class="fa fa-user form-control-feedback left" aria-hidden="true"></span>
+                                </div>
 
-                        </div>
+                                <div class="col-md-6 col-sm-6 col-xs-12 form-group has-feedback">
+                                    <input type="text" name="p1_lname" class="form-control" id="inputSuccess3" placeholder="Last Name">
+                                    <span class="fa fa-user form-control-feedback right" aria-hidden="true"></span>
+                                </div>
+
+                                <div class="col-md-6 col-sm-6 col-xs-12 form-group has-feedback">
+                                    <input type="text" name="p1_email" class="form-control has-feedback-left" id="inputSuccess4" name="email" placeholder="Email">
+                                    <span class="fa fa-envelope form-control-feedback left" aria-hidden="true"></span>
+                                </div>
+
+                                <div class="col-md-6 col-sm-6 col-xs-12 form-group has-feedback">
+                                    <input type="text" name="p1_phone" class="form-control" id="inputSuccess5" name="phone" placeholder="Phone">
+                                    <span class="fa fa-phone form-control-feedback right" aria-hidden="true"></span>
+                                </div>
+                                <div class="col-md-6 col-sm-6 col-xs-12 form-group has-feedback">
+                                    <input type="number" name="id1_no" class="form-control has-feedback-left" id="inputSuccess4" placeholder="ID Number/Passport">
+                                    <span class="fa fa-envelope form-control-feedback left" aria-hidden="true"></span>
+                                </div>
+                            <div class="col-md-6 col-sm-6 col-xs-12 form-group has-feedback">
+                                <input type="text" name="p1_occupation" class="form-control has-feedback-left" id="inputSuccess4" placeholder="Occupation">
+                                <span class="fa fa-envelope form-control-feedback left" aria-hidden="true"></span>
+                            </div>
                         <div class="modal-footer">
                           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                           <button type="submit" class="btn btn-primary">Submit</button>
@@ -126,7 +165,7 @@
                       </div>
                     </div>
                   </div>
-
+                  </div>
         <div class="">
 
 
@@ -167,9 +206,16 @@
                                 <td>{{$student->class}}</td>
                                 <td>{{$student->adm_date}}</td>
                                 <td>
-                                  <button type="button" class="btn btn-warning" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit">
-                                    <i class="fa fa-edit"></i>
-                                  </button>
+                                    <a href="{{route('students.edit', $student['id'])}}" type="button" class="btn btn-xs btn-warning" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit">
+                                        <i class="fa fa-edit"></i>
+                                    </a>
+                                    <button hidden>
+                                        <form method="post" action="{{route('students.destroy',$student['id'])}}">
+                                            @csrf
+                                            <input type="hidden" name="_method" value="DELETE">
+                                            <button type="submit" class="btn btn-xs btn-danger" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete Record"><i class="fa fa-trash"></i></button>
+                                        </form>
+                                    </button>
                                 </td>
                             </tr>
                         @endforeach

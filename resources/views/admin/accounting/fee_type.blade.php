@@ -92,11 +92,15 @@
                                         <td>{{$feeType->termly}}</td>
                                         <td>{{$feeType->note}}</td>
                                         <td>
-                                            <button type="button" class="btn btn-sm btn-warning" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit">
+                                            <a href="{{route('fee_type.edit', $feeType['id'])}}" type="button" class="btn btn-xs btn-warning" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit">
                                                 <i class="fa fa-edit"></i>
-                                            </button>
-                                            <button type="button" class="btn btn-sm btn-danger" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit">
-                                                <i class="fa fa-trash"></i>
+                                            </a>
+                                            <button hidden>
+                                                <form method="post" action="{{route('fee_type.destroy',$feeType['id'])}}">
+                                                    @csrf
+                                                    <input type="hidden" name="_method" value="DELETE">
+                                                    <button type="submit" class="btn btn-xs btn-danger" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete Record"><i class="fa fa-trash"></i></button>
+                                                </form>
                                             </button>
                                         </td>
                                     </tr>
