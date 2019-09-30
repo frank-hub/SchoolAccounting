@@ -9,6 +9,9 @@
                 @endif
             @endforeach
         </div>
+        <a href="{{url('accounting/invoice')}}"  class="btn btn-primary">
+            <span class="fa fa-arrow-circle-left">Invoices</span>
+        </a>
         <form method="post" action="{{url('pay',$invoices['id'])}}">
             @csrf
             {{--            @method('PUT')--}}

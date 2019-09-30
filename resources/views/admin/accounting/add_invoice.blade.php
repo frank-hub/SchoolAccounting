@@ -9,6 +9,9 @@
                 @endif
             @endforeach
         </div>
+        <a href="{{url('accounting/invoice')}}"  class="btn btn-primary">
+            <span class="fa fa-arrow-circle-left"> Back To Invoices</span>
+        </a>
         <form method="post" action="{{route('invoices.store')}}">
             @csrf
             <div class="row">
@@ -31,9 +34,9 @@
                                     <select class="form-control" name="class" required>
                                         <option value="">Select Class</option>
                                         <optgroup label="Pre-Unit/Nursery">
-                                            <option value="Baby">Baby Class</option>
-                                            <option value="Middle">Middle Class</option>
-                                            <option value="Top">Top Class</option>
+                                            <option value="Play Group">Play Group</option>
+                                            <option value="pp1">PP 1</option>
+                                            <option value="pp2">PP 2</option>
                                         </optgroup>
                                         <optgroup label="Lower Primary">
                                             <option value="One">One</option>
@@ -54,7 +57,7 @@
                                 <select class="form-control" name="student_name" required>
                                     <option value="">Select Student</option>
                                     @foreach($students as $student)
-                                        <option value="{{$student->fname ." ".$student->lname }}">{{$student->fname ." ".$student->lname }}</option>
+                                        <option value="{{$student->reg_name}}">{{$student->fname ." ".$student->lname }}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -127,10 +130,10 @@
                                                 <input type="text" class="form-control"  readonly="true" value="Tution Fee"/>
                                             </td>
                                             <td class=" ">
-                                            <input type="number" name="fee_amount" min="0" class="form-control"/>
+                                            <input type="number" name="fee_amount" min="0" class="form-control" required/>
                                             </td>
                                             <td class=" ">
-                                                <input type="number" name="paid_amount" min="0" class="form-control"/>
+                                                <input type="number" name="paid_amount" min="0" class="form-control" required/>
                                             </td>
                                         </tr>
                                         </tbody>

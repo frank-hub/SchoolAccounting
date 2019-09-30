@@ -24,7 +24,7 @@
                 <div class="col-md-12 col-sm-12 col-xs-12">
                     <div class="x_panel">
                         <div class="x_title">
-                            <h2><b>Fee Type Records</b></h2>
+                            <h2><b>Invoice Records</b></h2>
                             <ul class="nav navbar-right panel_toolbox">
                                 <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                                 </li>
@@ -83,7 +83,7 @@
                                                         <i class="fa fa-money"></i>
                                                     </a>
                                                 @endif
-                                                <a href="{{route('invoices.edit', $invoice['id'])}}" type="button" class="btn btn-xs btn-warning" data-toggle="tooltip" data-placement="top" title="" data-original-title="View Invoice">
+                                                <a href="{{url('print', $invoice['id'])}}" type="button" class="btn btn-xs btn-warning" data-toggle="tooltip" data-placement="top" title="" data-original-title="View Invoice">
                                                     <i class="fa fa-clipboard"></i>
                                                 </a>
                                                 <button hidden>

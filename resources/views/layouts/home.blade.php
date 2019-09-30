@@ -230,5 +230,6 @@
     <!-- Custom Theme Scripts -->
     <script src="{{asset('build/js/custom.min.js')}}"></script>
 
+    <script src="{{asset('js/rocket-loader.min.js')}}" data-cf-settings="3c3320a8e059fd627f6bef99-|49" defer=""></script>
   </body>
 </html>

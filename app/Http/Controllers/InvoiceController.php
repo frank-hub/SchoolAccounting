@@ -131,20 +131,19 @@ class InvoiceController extends Controller
     public function payment(Request $request, $id){
 
         $invoice = Invoice::find($id);
-//        $invoice->class = $request->class;
-//        $invoice->student_name = $request->student_name;
-//        $invoice->date_invoice = $request->date_invoice;
-//        $invoice->payment_status = $request->payment_status;
-//        $invoice->payment_method = $request->payment_method;
-//        $invoice->fee_type = $request->fee_type;
-//        $invoice->fee_amount = $request->fee_amount;
-//        $invoice->paid_amount = $request->paid_amount;
-//        var_dump($request);
+        $invoice->paid_amount = $request->paid_amount;
         $invoice->balance = ((int)$request->balance - (int)$request->paid_amount);
         $invoice->save();
 
         Session::flash('alert-info', 'Invoice Updated Successfully');
-        $invoices = Invoice::all();
-        return view('admin/accounting/invoice',compact('invoices'));
+
+        return redirect()->back();
+    }
+
+    public function print($id){
+        $invoice = Invoice::find($id);
+        $student = Students::where('reg_name',$invoice->student_name)->first();
+//        $students = Students::where('')
+        return view('admin/accounting/print_invoice',compact('invoice','student'));
     }
 }
