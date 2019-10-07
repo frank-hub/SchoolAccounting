@@ -57,7 +57,7 @@
                                 <select class="form-control" name="student_name" required>
                                     <option value="">Select Student</option>
                                     @foreach($students as $student)
-                                        <option value="{{$student->reg_name}}">{{$student->fname ." ".$student->lname }}</option>
+                                        <option value="{{$student->reg_name}}">{{$student->fname ." ".$student->lname."-".$student->reg_name }}</option>
                                     @endforeach
                                 </select>
                             </div>

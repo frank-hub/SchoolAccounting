@@ -81,6 +81,7 @@
                     <ul class="nav child_menu">
                     <li><a href="{{url('accounting/fee_type')}}">Fee Type</a></li>
                         <li><a href="{{url('accounting/invoice')}}">Invoice</a></li>
+                        <li><a href="{{url('accounting/fee_archives')}}">Fee Archives</a></li>
 {{--                        <li><a href="chartjs2.html">Payment History</a></li>--}}
 {{--                        <li><a href="chartjs2.html">Global Payment</a></li>--}}
                     </ul>

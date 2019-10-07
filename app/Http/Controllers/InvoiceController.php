@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\FeeArchive;
 use App\FeeType;
 use App\Invoice;
 use App\Students;
@@ -58,6 +59,10 @@ class InvoiceController extends Controller
         $invoice->paid_amount = $request->paid_amount;
         $invoice->balance = ((int)$request->fee_amount - (int)$request->paid_amount);
         $invoice->save();
+
+        $fee = FeeArchive::create($request->all());
+        $fee->save();
+
         Session::flash('alert-success', 'Invoice Created Successfully');
 
 //         var_dump($request->all());
@@ -134,7 +139,8 @@ class InvoiceController extends Controller
         $invoice->paid_amount = $request->paid_amount;
         $invoice->balance = ((int)$request->balance - (int)$request->paid_amount);
         $invoice->save();
-
+        $fee = FeeArchive::create($request->all());
+        $fee->save();
         Session::flash('alert-info', 'Invoice Updated Successfully');
 
         return redirect()->back();
@@ -143,7 +149,15 @@ class InvoiceController extends Controller
     public function print($id){
         $invoice = Invoice::find($id);
         $student = Students::where('reg_name',$invoice->student_name)->first();
+        $checks = FeeArchive::where('student_name',$invoice->student_name)->get();
 //        $students = Students::where('')
-        return view('admin/accounting/print_invoice',compact('invoice','student'));
+        return view('admin/accounting/print_invoice',compact('invoice','student','checks'));
+    }
+
+    public function fee_archives()
+    {
+        $invoices = FeeArchive::all();
+
+        return view('admin/accounting/fee_archives',compact('invoices'));
     }
 }

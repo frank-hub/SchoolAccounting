@@ -22,6 +22,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('accounting/fee_type','FeeTypeController@index');
     Route::get('accounting/invoice','InvoiceController@index');
     Route::get('accounting/invoice/add','InvoiceController@create');
+    Route::get('accounting/fee_archives','InvoiceController@fee_archives');
 
     Route::get('parent/view','ParentController@index');
     Route::get('/print/{id}','InvoiceController@print');

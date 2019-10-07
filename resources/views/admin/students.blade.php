@@ -25,7 +25,7 @@
                           <h4 class="modal-title" id="myModalLabel">Add Student</h4>
                         </div>
                         <div class="modal-body">
-                        <form class="form-horizontal form-label-left input_mask" method="POST" action="{{route('students.store')}}">
+                        <form id="reg_student" class="form-horizontal form-label-left input_mask" method="POST" action="{{route('students.store')}}">
                                 @csrf
                                 <h4>Student Details</h4>
                                 <div class="col-md-6 col-sm-6 col-xs-12 form-group has-feedback">
@@ -66,9 +66,11 @@
                                     </div>
                                 </div>
 
-                                <div class="col-md-6 col-sm-6 col-xs-12 form-group has-feedback">
-                                    <input type="text" class="form-control" name="reg_name" id="inputSuccess3" placeholder="Registration No.">
+                                <div class="col-md-6 col-sm-6 col-xs-12 form-group has-feedback" v-bind:class="regCalc">
+                                    <input type="text" class="form-control"  readonly name="reg_name" id="adm" placeholder="Registration No.">
                                     <span class="fa fa-user form-control-feedback right" aria-hidden="true"></span>
+                                    <span v-text="last"></span>
+                                    <span v-text="new"></span>
                                 </div>
 
                                 <div class="col-md-6 col-sm-6 col-xs-12 form-group has-feedback">
@@ -167,8 +169,6 @@
                   </div>
                   </div>
         <div class="">
-
-
           <div class="clearfix"></div>
           <div class="row">
             <div class="col-md-12 col-sm-12 col-xs-12">
@@ -176,9 +176,15 @@
                 <div class="x_title">
                   <h2><b>Student Records</b></h2>
                   <ul class="nav navbar-right panel_toolbox">
-                    <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                    <li>
+                        <a class="collapse-link">
+                            <i class="fa fa-chevron-up"></i>
+                        </a>
                     </li>
-                    <li><a class="close-link"><i class="fa fa-close"></i></a>
+                    <li>
+                        <a class="close-link">
+                            <i class="fa fa-close"></i>
+                        </a>
                     </li>
                   </ul>
                   <div class="clearfix"></div>
@@ -228,5 +234,15 @@
           </div>
         </div>
       </div>
+    <script src="{{asset('js/app.js')}}"></script>
+    <script>
+        var number = parseInt({{$string}});
+        var adms = document.getElementById('adm');
+        var nw = this.number + 1;
+        this.adms = 'LHG'+ nw ;
+        document.getElementById("adm").value = adms;
+
+    </script>
       <!-- /page content -->
 @endsection
+

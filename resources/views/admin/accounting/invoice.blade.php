@@ -74,9 +74,9 @@
                                             <td>{{$invoice->date_invoice}}</td>
                                             <td>
                                                 @if($invoice->payment_status == "Not Paid")
-                                                    <a href="{{route('invoices.edit', $invoice['id'])}}" type="button" class="btn btn-xs btn-warning" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit">
-                                                        <i class="fa fa-edit"></i>
-                                                    </a>
+    {{--                                                    <a href="{{route('invoices.edit', $invoice['id'])}}" type="button" class="btn btn-xs btn-warning" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit">--}}
+    {{--                                                        <i class="fa fa-edit"></i>--}}
+    {{--                                                    </a>--}}
                                                 @endif
                                                 @if($invoice->balance > 0)
                                                     <a href="{{route('invoices.show', $invoice['id'])}}" type="button" class="btn btn-xs btn-info" data-toggle="tooltip" data-placement="top" title="" data-original-title="Make Payment">

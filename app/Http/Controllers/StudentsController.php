@@ -17,7 +17,10 @@ class StudentsController extends Controller
     public function index()
     {
         $students = Students::all();
-        return view('admin.students',compact('students'));
+        $last_reg = Students::latest()->first();
+        $last =$last_reg->reg_name;
+        $string=substr($last,3);
+        return view('admin.students',compact('students','string'));
     }
 
     /**
